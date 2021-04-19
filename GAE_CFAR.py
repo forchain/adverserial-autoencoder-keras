@@ -11,7 +11,7 @@ from keras.datasets import mnist, cifar10
 from keras.optimizers import Adam
 import numpy as np
 import matplotlib.pyplot as plt
-from sklearn.neighbors.kde import KernelDensity
+from sklearn.neighbors import KernelDensity
 from mpl_toolkits.mplot3d import Axes3D
 import helpers
 from sklearn.model_selection import GridSearchCV

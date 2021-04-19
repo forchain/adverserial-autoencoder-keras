@@ -192,7 +192,7 @@ if __name__ == '__main__':
     ann.train(x_train, y_train, x_test, y_test, epochs=1)
     vecs,b = ann.generateRandomVectors(1000*range(10))
     generated=ann.decoder.predict(vecs)
-    print generated.shape
+    print(generated.shape)
     L= helpers.approximateLogLiklihood(generated, x_test)
-    print "Log Likelihood"
-    print L
+    print("Log Likelihood")
+    print(L)

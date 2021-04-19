@@ -13,7 +13,7 @@ train_loader = torch.utils.data.DataLoader(
                    transform= transforms.ToTensor()),
     batch_size=32, shuffle=True, **kwargs)
 
-class AE(nn.Module):
+class GAE(nn.Module):
     """Autoencoder
     autoencoder to generate image   
     """
@@ -37,6 +37,7 @@ class AE(nn.Module):
         x = x.view((-1, 1)+self.input_shape)
         return x
     def generateAndPlot(self, x_test, n = 10, fileName="generated.png"):
+        import copy
         fig = plt.figure(figsize=[20, 20*n/3])
         for i in range(n):
             x_in = x_test[np.random.randint(len(x_test))]

@@ -11,7 +11,7 @@ from keras.datasets import mnist, cifar10
 from keras.optimizers import Adam
 import numpy as np
 import matplotlib.pyplot as plt
-from sklearn.neighbors.kde import KernelDensity
+from sklearn.neighbors import KernelDensity
 from mpl_toolkits.mplot3d import Axes3D
 import helpers
 from sklearn.model_selection import GridSearchCV
@@ -133,7 +133,7 @@ class GAE():
                                                                            save_weights_only=False, 
                                                                            mode='auto', 
                                                                            period=1)])
-        print "Training KDE"
+        print("Training KDE")
         codes = self.encoder.predict(x_train)
 #        params = {'bandwidth': [3.16]}#np.logspace(0, 2, 5)}
 #        grid = GridSearchCV(KernelDensity(), params, n_jobs=4)
@@ -141,7 +141,7 @@ class GAE():
 #        print grid.best_params_
 #        self.kde = grid.best_estimator_
         self.kde = KernelDensity(kernel='gaussian', bandwidth=3.16).fit(codes)
-        print "Initial Training of discriminator"
+        print("Initial Training of discriminator")
         fileNames = glob.glob('models/GAE/weights_mnist_discriminator.*')
         fileNames.sort()
         if(len(fileNames) != 0):
@@ -165,7 +165,7 @@ class GAE():
                                                                                mode='auto', 
                                                                                period=1)])
 
-        print "Training GAN"
+        print("Training GAN")
         self.generateAndPlot(x_train, fileName="before_gan.png")
         self.trainGAN(x_train, epochs=len(x_train)/batch_size, batch_size= batch_size)
         self.generateAndPlot(x_train, fileName="after_gan.png")
